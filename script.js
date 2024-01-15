@@ -3,6 +3,8 @@ const numbers = document.querySelectorAll(".number--btn");
 const operators = document.querySelectorAll(".operator--btn");
 const equal = document.querySelector("#equal");
 const clear = document.querySelector("#clear");
+const backspace = document.querySelector("#remove");
+const decimalPoint = document.querySelector("#decimal");
 
 const add = (a, b) => Number(a) + Number(b);
 const subtract = (a, b) => Number(a) - Number(b);
@@ -66,3 +68,11 @@ clear.addEventListener("click", () => {
 });
 
 equal.addEventListener("click", evaluate);
+
+decimalPoint.addEventListener("click", (event) => {
+  const displayText = display.textContent;
+  const displayArray = displayText.split(" ");
+  if (!displayArray[displayArray.length - 1].includes(".")) {
+    display.textContent += event.target.textContent;
+  }
+});
