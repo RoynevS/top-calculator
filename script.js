@@ -39,12 +39,25 @@ const evaluate = () => {
   if (displayValue.split(" ").length === 3) {
     [num1, operator, num2] = displayValue.split(" ");
     display.textContent = Math.round(operate(num1, operator, num2) * 100) / 100;
+    if (checkNoDecimalPoint()) {
+      decimalPoint.removeAttribute("disabled");
+    }
   }
 };
 
 const checkDisplay = () => {
   if (displayValue.split(" ").length >= 3) {
     evaluate();
+  }
+};
+
+const checkNoDecimalPoint = () => {
+  const displayText = display.textContent;
+  const displayArray = displayText.split(" ");
+  if (!displayArray[displayArray.length - 1].includes(".")) {
+    return true;
+  } else {
+    return false;
   }
 };
 
@@ -57,6 +70,7 @@ numbers.forEach(number => number.addEventListener("click", (event) => {
 operators.forEach(operator => operator.addEventListener("click", (event) => {
   checkDisplay()
   display.textContent += ` ${event.target.textContent} `;
+  decimalPoint.removeAttribute("disabled")
 }));
 
 clear.addEventListener("click", () => {
@@ -65,15 +79,15 @@ clear.addEventListener("click", () => {
   num2 = undefined;
   operator = undefined;
   displayValue = undefined;
+  decimalPoint.removeAttribute("disabled");
 });
 
 equal.addEventListener("click", evaluate);
 
-decimalPoint.addEventListener("click", (event) => {
-  const displayText = display.textContent;
-  const displayArray = displayText.split(" ");
-  if (!displayArray[displayArray.length - 1].includes(".")) {
-    display.textContent += event.target.textContent;
+decimalPoint.addEventListener("click", () => {
+  if (checkNoDecimalPoint()) {
+    display.textContent += ".";
+    decimalPoint.setAttribute("disabled", "");
   }
 });
 
@@ -83,5 +97,10 @@ backspace.addEventListener("click", () => {
     display.textContent = displayTextContent.slice(0, displayTextContent.length - 3);
   } else {
     display.textContent = displayTextContent.slice(0, displayTextContent.length - 1);
+  }
+  if (checkNoDecimalPoint()) {
+    decimalPoint.removeAttribute("disabled");
+  } else if (!checkNoDecimalPoint()) {
+    decimalPoint.setAttribute("disabled", "");
   }
 });
