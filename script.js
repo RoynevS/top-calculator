@@ -26,6 +26,17 @@ const operate = (num1, operator, num2) => {
   }
 }
 
+const evaluate = () => {
+  [num1, operator, num2] = displayValue.split(" ");
+  display.textContent = operate(num1, operator, num2);
+};
+
+const checkDisplay = () => {
+  if (displayValue.split(" ").length >= 3) {
+    evaluate();
+  }
+};
+
 
 numbers.forEach(number => number.addEventListener("click", (event) => {
   display.textContent += `${event.target.textContent}`;
@@ -33,10 +44,11 @@ numbers.forEach(number => number.addEventListener("click", (event) => {
 }));
 
 operators.forEach(operator => operator.addEventListener("click", (event) => {
+  checkDisplay()
   display.textContent += ` ${event.target.textContent} `;
 }));
 
-equal.addEventListener("click", () => {
-  [num1, operator, num2] = displayValue.split(" ");
-  display.textContent = operate(num1, operator, num2);
-});
+
+equal.addEventListener("click", evaluate);
+
+operators.forEach(operator => console.log(operator.textContent));
