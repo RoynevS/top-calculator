@@ -28,8 +28,10 @@ const operate = (num1, operator, num2) => {
 }
 
 const evaluate = () => {
-  [num1, operator, num2] = displayValue.split(" ");
-  display.textContent = operate(num1, operator, num2);
+  if (displayValue.split(" ").length === 3) {
+    [num1, operator, num2] = displayValue.split(" ");
+    display.textContent = operate(num1, operator, num2);
+  }
 };
 
 const checkDisplay = () => {
