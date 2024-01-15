@@ -9,9 +9,9 @@ const subtract = (a, b) => Number(a) - Number(b);
 const multiply = (a, b) => Number(a) * Number(b);
 const divide = (a, b) => {
   if (Number(b) !== 0) {
-    return Number(a) / Number(b)
+    return Number(a) / Number(b);
   } else {
-    return "Please don't destroy the universe!"
+    return "Please don't destroy the universe!";
   }
 }; 
 
@@ -36,7 +36,7 @@ const operate = (num1, operator, num2) => {
 const evaluate = () => {
   if (displayValue.split(" ").length === 3) {
     [num1, operator, num2] = displayValue.split(" ");
-    display.textContent = operate(num1, operator, num2);
+    display.textContent = Math.round(operate(num1, operator, num2) * 100) / 100;
   }
 };
 
