@@ -7,7 +7,13 @@ const clear = document.querySelector("#clear");
 const add = (a, b) => Number(a) + Number(b);
 const subtract = (a, b) => Number(a) - Number(b);
 const multiply = (a, b) => Number(a) * Number(b);
-const divide = (a, b) => Number(a) / Number(b); 
+const divide = (a, b) => {
+  if (Number(b) !== 0) {
+    return Number(a) / Number(b)
+  } else {
+    return "Please don't destroy the universe!"
+  }
+}; 
 
 let num1;
 let num2;
