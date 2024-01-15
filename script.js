@@ -82,7 +82,11 @@ clear.addEventListener("click", () => {
   decimalPoint.removeAttribute("disabled");
 });
 
-equal.addEventListener("click", evaluate);
+equal.addEventListener("click", () => {
+  if (display.textContent !== "") {
+    evaluate();
+  }
+});
 
 decimalPoint.addEventListener("click", () => {
   if (checkNoDecimalPoint()) {
