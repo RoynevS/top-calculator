@@ -76,3 +76,12 @@ decimalPoint.addEventListener("click", (event) => {
     display.textContent += event.target.textContent;
   }
 });
+
+backspace.addEventListener("click", () => {
+  const displayTextContent = display.textContent;
+  if (displayTextContent[displayTextContent.length - 1] === " ") {
+    display.textContent = displayTextContent.slice(0, displayTextContent.length - 3);
+  } else {
+    display.textContent = displayTextContent.slice(0, displayTextContent.length - 1);
+  }
+});
