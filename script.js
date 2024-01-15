@@ -2,6 +2,7 @@ const display = document.querySelector(".display");
 const numbers = document.querySelectorAll(".number--btn");
 const operators = document.querySelectorAll(".operator--btn");
 const equal = document.querySelector("#equal");
+const clear = document.querySelector("#clear");
 
 const add = (a, b) => Number(a) + Number(b);
 const subtract = (a, b) => Number(a) - Number(b);
@@ -48,7 +49,12 @@ operators.forEach(operator => operator.addEventListener("click", (event) => {
   display.textContent += ` ${event.target.textContent} `;
 }));
 
+clear.addEventListener("click", () => {
+  display.textContent = "";
+  num1 = undefined;
+  num2 = undefined;
+  operator = undefined;
+  displayValue = undefined;
+});
 
 equal.addEventListener("click", evaluate);
-
-operators.forEach(operator => console.log(operator.textContent));
